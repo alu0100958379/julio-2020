@@ -26,6 +26,12 @@ RSpec.describe Alimento do
 		@menu2 = Array.new
 		@menu2.push(@platohijo)
 
+		
+		@vector_platos = [@platohijo, @platohijo2]
+		@vector_precios = [50,25]
+
+
+		@menumenu = Menu.new(@vector_platos, @vector_precios)
 	end
 
 	context "Exista Alimento" do
@@ -117,6 +123,24 @@ RSpec.describe Alimento do
 			expect(@menu1.max).to eq(@platohijo)
 			expect(@menu1.min).to eq(@platohijo2)
 			expect(@menu1.sort{|x,y| x <=> y}).to eq([@platohijo2,@platohijo])
+		end
+	end
+
+	context "Practica 9" do
+		it "Hallar la media del impacto" do
+			expect(@menu1.collect{|x| x.get_huella}).to eq([1,1])
+		end
+
+		it "Existe la clase Menu" do
+			expect(@menumenu.class).to eq(Menu)
+		end
+
+		it "Plato con máximo valor calórico" do
+			expect(@menumenu.max).to eq(@platohijo)
+		end
+
+		it "Incrementar precio segun el valor calórico" do
+			expect(@menumenu.A_precios.collect{|x| x*((@menumenu.max).get_huella)}).to eq([50,25])
 		end
 	end
 end

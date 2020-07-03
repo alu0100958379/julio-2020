@@ -64,6 +64,7 @@ class Plato
 		@name = name
 		@al = al
 		@gr = gr
+		@huella = 0
 	end
 	
 	def valorCalorico
@@ -83,6 +84,32 @@ class PlatoHijo < Plato
 		return sum
 	end
 
+	def impacto_gases
+		if valorGases < 800
+			return 1
+		else 
+			if (valorGases > 1200)
+				return 3
+			end
+		end
+		return 2
+	end
+
+	def impacto_energia
+		if (valorCalorico < 670)
+                        return 1
+                else 
+			if (valorCalorico > 830)
+                        	return 3
+			end
+		end
+		return 2
+	end
+	
+	def get_huella
+		return (impacto_energia + impacto_gases)/2
+	end
+
 	def to_s
 		"Eficiencia energética: #{valorCalorico()}"
 	end
@@ -95,23 +122,17 @@ end
 
 class Menu
 
-	include Enumerable 
+	include Enumerable
 
-	attr_accessor :lista_de_platos
+	attr_accessor :A_platos, :A_precios
 
-	def initialize
-		@lista_de_platos = Array.new
-		@indicador = 0
-	end
-
-	def push(plato)
-        #       sum = plato.al.collect{|x| sum += x.energia}
-		@lista_de_platos.push(plato)
-	#	@indicador += sum
+	def initialize(platos,precio)
+		@A_platos = platos
+		@A_precios = precio
 	end
 
 	def each
-		yield @lista_de_platos
-	end	
+		@A_platos.collect{|x| yield x}
+	end
 
 end
