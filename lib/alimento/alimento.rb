@@ -1,3 +1,4 @@
+#Clase Alimento que representa un alimento con sus valores
 class Alim
 
 	include Comparable
@@ -18,6 +19,7 @@ end
 
 Node = Struct.new(:value, :next, :prev)
 
+#Clase para representar Listas doblemente enlazadas
 class List
 
 	include Enumerable
@@ -55,7 +57,7 @@ class List
 
 end
 
-
+#Clase para representar un plato
 class Plato
 
 	attr_accessor :name, :al, :gr, :huella
@@ -74,6 +76,7 @@ class Plato
 	end
 end
 
+#Clase hija heredada de la clase Plato
 class PlatoHijo < Plato
 
 	include Comparable
@@ -119,7 +122,7 @@ class PlatoHijo < Plato
 	end
 end
 
-
+#Clase para representar Menus
 class Menu
 
 	include Enumerable
